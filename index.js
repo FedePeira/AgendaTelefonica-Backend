@@ -20,6 +20,7 @@ const requestPost = (request, response, next) => {
     next()
 }
 
+app.use(express.static('dist'))
 app.use(requestLogger)
 app.use(requestPost)
 
@@ -148,6 +149,6 @@ app.post('/api/persons', (request, response) => {
   }
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)
