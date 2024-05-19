@@ -2,16 +2,12 @@ const Person = require('../models/person')
 const personRouter = require('express').Router()
 
 personRouter.get('/', (request, response) => {
-    response.send('<h1>Hello World!</h1>')
-})
-
-personRouter.get('/api/persons', (request, response) => {
     Person.find({}).then(persons => {
         response.json(persons)
     })
 })
 
-personRouter.get('/api/persons/:id', (request, response, next) => {
+personRouter.get('/:id', (request, response, next) => {
     Person.findById(request.params.id)
         .then(person => {
             if(person){
@@ -23,7 +19,7 @@ personRouter.get('/api/persons/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-personRouter.delete('/api/persons/:id', (request, response, next) => {
+personRouter.delete('/:id', (request, response, next) => {
     Person.findByIdAndDelete(request.params.id)
         .then(result => {
             response.status(204).end()
@@ -32,7 +28,7 @@ personRouter.delete('/api/persons/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-personRouter.put('/api/persons/:id', (request, response, next) => {
+personRouter.put('/:id', (request, response, next) => {
     const { name, number } = request.body
 
     Person.findByIdAndUpdate(
@@ -46,7 +42,7 @@ personRouter.put('/api/persons/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-personRouter.post('/api/persons', (request, response) => {
+personRouter.post('/', (request, response) => {
     const body = request.body
 
     if(!body.number) {
