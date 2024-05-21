@@ -20,9 +20,11 @@ mongoose.connect(config.MONGODB_URI)
     })
 
 app.use(cors({
-    origin: 'https://agendatelefonica-wolt.onrender.com'
+    origin: 'https://agendatelefonica-wolt.onrender.com',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
 }))
-app.use(cors())
+
 app.use(express.static('dist'))
 app.use(express.json())
 app.use(middleware.requestLogger)
