@@ -19,12 +19,12 @@ mongoose.connect(config.MONGODB_URI)
         logger.error('error connecting to MongoDB:', error.message)
     })
 
-app.use(cors({
+const corsOptions = {
     origin: 'https://agendatelefonica-wolt.onrender.com',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}))
+    optionsSuccessStatus: 200
+}
 
+app.use(cors(corsOptions))
 app.use(express.static('dist'))
 app.use(express.json())
 app.use(middleware.requestLogger)
