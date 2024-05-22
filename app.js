@@ -20,7 +20,7 @@ mongoose.connect(config.MONGODB_URI)
     })
 
 const corsOptions = {
-    origin: 'https://agendatelefonica-wolt.onrender.com',
+    origin: 'https://agendatelefonicapeira.netlify.app',
     optionsSuccessStatus: 200
 }
 
